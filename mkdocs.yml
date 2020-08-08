@@ -1,5 +1,5 @@
 site_name: basic tool
-pages：
+pages: 
     - "mkdocs": mkdocs.md
     - "git": git.md
     - "markdown": markdown.md
