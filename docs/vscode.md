@@ -31,7 +31,7 @@ Skia had a feature that let it be imported as an .so by Lua.
 This feature is not yet supported by GN, but would have looked something like this:
 
     $ lua
-
+    
     Lua 5.2.0  Copyright (C) 1994-2011 Lua.org, PUC-Rio
     > require 'skia'
     > paint = Sk.newPaint()
