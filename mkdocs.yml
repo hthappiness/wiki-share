@@ -4,5 +4,8 @@ nav:
     - "git": git.md
     - "markdown": markdown.md
     - "vscode": vscode.md
+    - "python": python.md
     - "index": index.md
-theme: readthedocs
+#theme: readthedocs
+theme:
+    name: 'material'

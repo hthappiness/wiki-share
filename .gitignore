@@ -2,4 +2,4 @@
 site
 
 # production  打包文件
-/build
+build
