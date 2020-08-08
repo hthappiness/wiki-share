@@ -1,7 +1,8 @@
 site_name: basic tool
-pages: 
+nav: 
     - "mkdocs": mkdocs.md
     - "git": git.md
     - "markdown": markdown.md
     - "vscode": vscode.md
     - "index": index.md
+theme: readthedocs
