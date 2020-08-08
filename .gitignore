@@ -1,0 +1,5 @@
+# dependencies  网页文件
+site
+
+# production  打包文件
+/build
