@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Vulkan - My Docs</title>
+        <title>markdown - basic tool</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -23,7 +23,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">My Docs</a>
+                <a class="navbar-brand" href="..">basic tool</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -34,13 +34,19 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href=".." class="nav-link">Welcome to MkDocs</a>
+                                <a href="../mkdocs/" class="nav-link">mkdocs</a>
                             </li>
                             <li class="navitem">
-                                <a href="../lua/" class="nav-link">Lua</a>
+                                <a href="../git/" class="nav-link">git</a>
                             </li>
                             <li class="navitem active">
-                                <a href="./" class="nav-link">Vulkan</a>
+                                <a href="./" class="nav-link">markdown</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../vscode/" class="nav-link">vscode</a>
+                            </li>
+                            <li class="navitem">
+                                <a href=".." class="nav-link">index</a>
                             </li>
                         </ul>
 
@@ -51,12 +57,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../lua/" class="nav-link">
+                                <a rel="prev" href="../git/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../vscode/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -78,17 +84,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#vulkan" class="nav-link">Vulkan</a>
+            <li class="nav-item" data-level="1"><a href="#markdown" class="nav-link">markdown</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#windows-and-linux" class="nav-link">Windows and Linux</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#android" class="nav-link">Android</a>
+            <li class="nav-item" data-level="2"><a href="#commands" class="nav-link">Commands</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#using-the-vulkan-backend" class="nav-link">Using the Vulkan Backend</a>
+            <li class="nav-item" data-level="2"><a href="#others" class="nav-link">others</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#project-layout" class="nav-link">Project layout</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -99,50 +105,15 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="vulkan">Vulkan</h1>
-<p>Skia has a Vulkan implementation of its GPU backend. The Vulkan backend can be
-built alongside the OpenGL backend. The client can select between the OpenGL
-and Vulkan implementation at runtime. The Vulkan backend has reached feature
-parity with the OpenGL backend. At this time we find that many Vulkan drivers
-have bugs that Skia triggers for which we have no workaround. We are reporting
-bugs to vendors as we find them.</p>
-<h2 id="windows-and-linux">Windows and Linux</h2>
-<p>To build the Vulkan backend, set <code>skia_vulkan_sdk</code> to the path to your Vulkan SDK in <code>args.gn</code>.
-This defaults to the environment variable <code>VULKAN_SDK</code>.</p>
-<h2 id="android">Android</h2>
-<p>The Vulkan backend can run on any device with Vulkan drivers, including all Android N+ devices.
-To build the Vulkan backend, set <code>ndk_api = 24</code> in <code>args.gn</code> to target Android N.</p>
-<h2 id="using-the-vulkan-backend">Using the Vulkan Backend</h2>
-<p>To create a GrContext that is backed by Vulkan the client creates a Vulkan device and queue, initializes a GrVkBackendContext to describe the context, and then calls GrContext::MakeVulkan:</p>
-<!--?prettify lang=c++?-->
-
-<pre><code>sk_sp&lt;GrVkBackendContext&gt; vkContext = new GrVkBackendContext;
-vkBackendContext.fInstance = vkInstance;
-vkBackendContext.fPhysicalDevice = vkPhysDevice;
-...
-vkBackendContext.fInterface.reset(GrVkCreateInterface(instance, vkPhysDevice, extensionFlags);
-...
-
-sk_sp&lt;GrContext&gt; context = GrContext::MakeVulkan(vkBackendContext);
-</code></pre>
-<p>When using the Vulkan backend, GrVkImageInfo is used to construct GrBackendTexture
-and GrBackendRenderTarget objects that in turn are used to create SkSurface and SkImage
-objects that refer to VkImages created by the Skia client.</p>
-<p>The GrBackendObject returned by SkImage::getTextureHandle(),
-SkSurface::getTextureHandle(), and SkSurface::getRenderTargetHandle() should be
-interpreted as a GrVkImageInfo*. This allows a client to get the backing VkImage
-of a SkImage or SkSurface.</p>
-<p>GrVkImageInfo specifies a VkImage and associated state (tiling, layout, format, etc).
-After getting a GrVkImageInfo* via getTextureHandle() or
-getRenderTargetHandle(), the client should check the fImageLayout field to know
-what layout Skia left the VkImage in before using the VkImage. If the client
-changes the layout of the VkImage,
-GrVkImageInfo::updateImageLayout(VkImageLayout layout) should be called before
-resuming Skia rendering.</p>
-<p>The client is responsible for any synchronization or barriers needed before
-Skia performs I/O on a VkImage imported into Skia via GrVkImageInfo.  Skia will
-assume it can start issuing commands referencing the VkImage without the need
-for additional synchronization.</p></div>
+<h1 id="markdown">markdown</h1>
+<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
+<h2 id="commands">Commands</h2>
+<ul>
+<li></li>
+</ul>
+<h2 id="others">others</h2>
+<p>typora</p>
+<h2 id="project-layout">Project layout</h2></div>
             </div>
         </div>
 
