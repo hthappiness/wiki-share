@@ -1,4 +1,4 @@
-site_name: basic tool
+site_name: basic
 nav: 
     - "mkdocs": mkdocs.md
     - "git": git.md
@@ -6,22 +6,7 @@ nav:
     - "vscode": vscode.md
     - "python": python.md
     - "index": index.md
+    - "datastructure": datastructure.md
 #theme: readthedocs
 theme:
     name: 'material'
-    logo:
-        icon: "mkdocs"
-        #logo: 'images/logo.svg' 需要添加图片
-    palette:
-        primary: "black"
-        accent: "deep orange"
-    language: "zh"
-
-extra:
-  social:
-    - type: 'github'
-      link: 'https://github.com/hthappiness'
-    - type: 'twitter'
-      link: 'https://github.com/hthappiness'
-    - type: 'linkedin'
-      link: 'https://github.com/hthappiness'
