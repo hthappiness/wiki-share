@@ -7,7 +7,7 @@ nav:
     - "python": python.md
     - "index": index.md
     - "datastructure": datastructure.md
-theme: cosmo 
+theme: flatly 
 #theme: readthedocs
 #theme:
 #    name: 'material'
