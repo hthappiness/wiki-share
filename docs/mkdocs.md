@@ -42,9 +42,12 @@ mkdocs gh-deploy
 
 其它
 
-[其他主题设置]: https://www.jianshu.com/p/c005c45abe85
+这是主题设置的[参考]（https://www.jianshu.com/p/c005c45abe85）
 
 ## mkdocs与github联动
+
+> 使用mkdocs gh-deploy
+
 
 ## FAQ
 
