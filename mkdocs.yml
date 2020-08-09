@@ -7,6 +7,6 @@ nav:
     - "python": python.md
     - "index": index.md
     - "datastructure": datastructure.md
-#theme: readthedocs
-theme:
-    name: 'material'
+theme: readthedocs
+#theme:
+#    name: 'material'
